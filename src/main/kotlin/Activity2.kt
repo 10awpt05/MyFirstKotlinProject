@@ -1,35 +1,37 @@
-package org.example
 fun main(){
     println("--------------WELCOME--------------")
-    println("Please fill up all neccessary info:")
+    println("Please fill up all necessary info:")
     println("-----------------------------------")
 
-    while(true){
-        println("Please Enter your First Name: ")
-        var fName: String? = readlnOrNull()
+    println("How many student?:")
+    val ans: Int = readln().toInt()?:0
 
-        println("Please Enter your middle innitials: ")
-        var mi: Char? = readlnOrNull()?.singleOrNull()
+    repeat(ans){
+        println("Please Enter your First Name: ")
+        val fName: String? = readlnOrNull()
+
+        println("Please Enter your middle initials: ")
+        val mi: Char? = readlnOrNull()?.singleOrNull()
 
         println("Please Enter your Last Name: ")
-        var lName: String? = readlnOrNull()
+        val lName: String? = readlnOrNull()
 
         println("")
         println("Now Enter your Grades")
         println("English: ")
-        var eng = readlnOrNull()?.toInt()?:0
+        val eng = readlnOrNull()?.toInt()?:0
 
         println("Math: ")
-        var math = readlnOrNull()?.toInt()?:0
+        val math = readlnOrNull()?.toInt()?:0
 
         println("Science: ")
-        var science = readlnOrNull()?.toInt()?:0
+        val science = readlnOrNull()?.toInt()?:0
 
         println("Filipino: ")
-        var fil = readlnOrNull()?.toInt()?:0
+        val fil = readlnOrNull()?.toInt()?:0
 
-        var ovg: Int = eng + math + science + fil
-        var avg: Double = ovg.toDouble() / 4
+        val ovg: Int = eng + math + science + fil
+        val avg: Int = ovg / 4
 
         println("Hello $fName $mi. $lName")
         println("Your Grades are:")
@@ -39,14 +41,15 @@ fun main(){
         println("Filipino: $fil")
         println("You have a total of $ovg")
         println("And your average grade is: $avg")
+        println("")
+        /*
+                if (avg >= 75){
+                    println("You Pass")
+                }else{
+                    println("You Failed")
+                }
 
-      /*  if (avg >= 75){
-            println("You Pass")
-        }else{
-            println("You Failed")
-        }
-        */
-
+         */
     }
 
 }
