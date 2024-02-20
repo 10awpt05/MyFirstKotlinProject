@@ -1,76 +1,79 @@
 package src.main.kotlin
 
-class inven(){
-    var name: String? = null
-    var quant: Int? = 0
-    var stats: String? = null
+import kotlin.system.exitProcess
 
-    fun thirdOpt(){
-        println("Item name:")
-        name = readlnOrNull()
-        println("Quantity:")
-        quant = readlnOrNull()!!.toInt()
-
-
-    }
-    fun status() {
-        println(
-            "Item Status:\n" +
-                    "[1] Good\n" +
-                    "[2] Damage\n" +
-                    "[3] Rotten"
-        )
-        val sans: Int? = readlnOrNull()?.toInt()
-        when(sans){
-            1 -> stats = "Good"
-            2 -> stats = "Damage"
-            3 -> stats = "Rotten"
+class Beverage(){
+    var bev1: String? =  null
+    var con: String? = null
+    var stat: String? = null
+    fun item(){
+        println("Choose an item to add:\n"+
+                "[1] Soft drinks\n"+
+                "[2] Wine\n"+
+                "[3] Coffee\n"+
+                "[4] Water")
+        val ans = readLine()?.toInt()
+        when(ans){
+            1->bev1 = "Soft drinks"
+            2->bev1 = "Wine"
+            3->bev1 = "Coffee"
+            4->bev1 = "Water"
         }
-    }
-    fun display(){
-        println("In your inventory you have:")
-        println("$quant $name with $stats condition")
-    }
 
+    }
+    fun condition(){
+        println("Item Status:\n"+
+                "[1] GOOD\n"+
+                "[2] DAMAGE\n"+
+                "[3] EXPIRED")
+        val choice = readLine()?.toInt()
+        when(choice){
+            1-> {con = "GOOD"
+                stat = "SALEABLE"}
+            2-> {con = "DAMAGE"
+                stat = "UNSALEABLE"}
+            3->{ con = "EXPIRED"
+                stat = "UNSALEABLE"}
+        }
+
+    }
 }
-
 fun main() {
-    val ans = inven()
-
-        println("-------------------------------")
-        println("WELCOME TO INVENTORY MANAGEMENT")
-        println("-------------------------------")
+    val opt = Beverage()
     do {
+        println("---------------------------")
+        println("WELCOME TO BEVERAGE INVENTORY SYSTEM")
+        println("---------------------------")
+        println("")
         println(
-            "CHOOSE AN OPTION: \n" +
-                    "[1] Add an Item.\n" +
-                    "[2] Delete an Item.\n" + //no function yet
-                    "[3] Display Items."
-        )
-        val fopt = readlnOrNull()!!.toInt()
+            "PLEASE CHOOSE AN OPTION:\n" +
+                    "[1] ADD ITEM TO THE INVENTORY.\n" +
+                    "[2] CHECK INVENTORY[not available]\n"+
+                    "[3] EXIT PROGRAM.")
+        val option1: Int? = readlnOrNull()?.toInt()
+        if (option1 == 1) {
+            do {
+                opt.item()
 
-        when (fopt) {
-            1 -> {
-                println(
-                    "What type of an item you want to add:\n" +
-                            "[1] Vegetable\n" +
-                            "[2] Fruits\n" +
-                            "[3] Condiments"
-                )
-                println("Choose an Option:")
-                val sopt: Int? = readlnOrNull()?.toInt()
-                when (sopt) {
-                    1 -> {ans.thirdOpt()
-                        ans.status()}
-                    2 ->  {ans.thirdOpt()
-                        ans.status()}
-                    3 ->  {ans.thirdOpt()
-                        ans.status()}
-                }
-println("ITEM ADDED SUCCESSFULLY!")
-            }
+                println("Enter Brand: ")
+                val brand: String? = readLine()
+                println("What size:")
+                val size: Any? = readLine()
+                opt.condition()
+                println("---------------------------")
+                println("$size of $brand successfully added with ${opt.con} condition and its ${opt.stat}")
+                println("---------------------------")
+                println("Do you want to add more item? type [Y] for yes and [N] for no")
+                val ans1: Char? = readLine()?.singleOrNull()?.lowercaseChar()
 
-            3 -> ans.display()
+            } while (ans1?.equals('y')!!)
+        }else if(option1 == 2){
+            break
+        }else if(option1 == 3){
+            exitProcess(0)
+        }else{
+            break
         }
     } while (true)
 }
+
